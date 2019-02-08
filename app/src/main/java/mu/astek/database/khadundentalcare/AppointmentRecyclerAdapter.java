@@ -84,7 +84,7 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         if (appointmentDTO != null && appointmentDTO.getPatientDTO() != null) {
 
             PatientDTO patientDTO = appointmentDTO.getPatientDTO();
-            int age = TypeHelper.getAge(patientDTO.getDateOfBirth());
+            int age = patientDTO.getAge();
             holder.txtAge.setText("" + age);
             holder.txtUsername.setText(patientDTO.getFirstname() + " " + patientDTO.getLastname());
             holder.txtPhone.setText(patientDTO.getPhone());

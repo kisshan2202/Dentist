@@ -2,11 +2,13 @@ package mu.astek.database.khadundentalcare.Activities;
 
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -34,17 +36,19 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     Button btnSave;
+    LinearLayout linearNewPatient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
         spinnerPatient = findViewById(R.id.spinnerPatient);
         service = new DatabaseService(this);
-        list = service.getPatientList();
+
 
         txtDate = findViewById(R.id.txtDate);
         txtTime = findViewById(R.id.txtTime);
         btnSave = findViewById(R.id.btnSave);
+        linearNewPatient = findViewById(R.id.linearNewPatient);
         txtTime.setText(timeFormat.format(now.getTime()));
         txtDate.setText(dateFormat.format(now.getTime()));
         txtDate.setOnClickListener(new View.OnClickListener() {
@@ -71,13 +75,13 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
             }
         });
 
-        if(!list.isEmpty()){
-            ArrayAdapter adapter = new ArrayAdapter(AddAppointmentActivity.this,
-                    android.R.layout.simple_spinner_item,
-                    getPatient(list));
+        linearNewPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddAppointmentActivity.this, AddPatientActivity.class));
+            }
+        });
 
-            spinnerPatient.setAdapter(adapter);
-        }
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +111,18 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
         return array;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list = service.getPatientList();
+        if(!list.isEmpty()){
+            ArrayAdapter adapter = new ArrayAdapter(AddAppointmentActivity.this,
+                    android.R.layout.simple_spinner_item,
+                    getPatient(list));
+
+            spinnerPatient.setAdapter(adapter);
+        }
+    }
 
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {

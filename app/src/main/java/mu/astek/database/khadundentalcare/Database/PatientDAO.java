@@ -54,8 +54,8 @@ public final class PatientDAO {
         values.put("phone", dto.getPhone());
         values.put("gender", dto.getGender());
 
-        if (dto.getDateOfBirth() != null)
-            values.put("dateOfBirth", dto.getDateOfBirth());
+        if (dto.getAge() != null)
+            values.put("age", dto.getAge());
 
         return values;
     }
@@ -77,7 +77,7 @@ public final class PatientDAO {
 
             dto = new PatientDTO();
             dto.setPatientId(res.getInt(res.getColumnIndex("patientId")));
-            dto.setDateOfBirth(res.getLong(res.getColumnIndexOrThrow("dateOfBirth")));
+            dto.setAge(res.getInt(res.getColumnIndexOrThrow("age")));
             dto.setFirstname(res.getString(res.getColumnIndexOrThrow("firstname")));
             dto.setLastname(res.getString(res.getColumnIndexOrThrow("lastname")));
             dto.setAddress(res.getString(res.getColumnIndexOrThrow("address")));
@@ -108,7 +108,7 @@ public final class PatientDAO {
             res.moveToFirst();
             patientDTO = new PatientDTO();
             patientDTO.setPatientId(res.getInt(res.getColumnIndex("patientId")));
-            patientDTO.setDateOfBirth(res.getLong(res.getColumnIndexOrThrow("dateOfBirth")));
+            patientDTO.setAge(res.getInt(res.getColumnIndexOrThrow("age")));
             patientDTO.setFirstname(res.getString(res.getColumnIndexOrThrow("firstname")));
             patientDTO.setLastname(res.getString(res.getColumnIndexOrThrow("lastname")));
             patientDTO.setAddress(res.getString(res.getColumnIndexOrThrow("address")));

@@ -148,18 +148,18 @@
                 android:layout_weight="0.4"
                 android:gravity="right|center_vertical"
                 android:paddingRight="10dp"
-                android:text="Date of Birth :"
+                android:text="Age:"
                 android:textColor="@color/colorBlue"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/txtDOB"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.6"
                 android:gravity="left|center_vertical"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textColor="@android:color/black"
                 android:textColorHint="@color/colorBlue"
                 android:textSize="16sp" />

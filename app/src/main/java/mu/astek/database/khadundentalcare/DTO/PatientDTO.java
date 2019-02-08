@@ -7,7 +7,7 @@ public class PatientDTO implements Serializable {
     Integer patientId;
     String firstname;
     String lastname;
-    Long dateOfBirth;
+    Integer age;
     String address;
     String phone;
     String gender;
@@ -28,12 +28,12 @@ public class PatientDTO implements Serializable {
         this.lastname = lastname;
     }
 
-    public Long getDateOfBirth() {
-        return dateOfBirth;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setDateOfBirth(Long dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getAddress() {

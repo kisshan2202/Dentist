@@ -82,11 +82,6 @@ public class PatientAppointmentDetailsRecyclerAdapter extends RecyclerView.Adapt
             }
         });
 
-        if (appointmentDTO != null && appointmentDTO.getPatientDTO() != null) {
-
-            PatientDTO patientDTO = appointmentDTO.getPatientDTO();
-            int age = TypeHelper.getAge(patientDTO.getDateOfBirth());
-        }
         holder.txtDate.setText(sdf.format(new Date(appointmentDTO.getDate())));
 
     }

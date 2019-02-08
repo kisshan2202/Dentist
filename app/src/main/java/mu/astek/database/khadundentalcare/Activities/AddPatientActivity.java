@@ -18,14 +18,11 @@ import mu.astek.database.khadundentalcare.DTO.PatientDTO;
 import mu.astek.database.khadundentalcare.Database.DatabaseService;
 import mu.astek.database.khadundentalcare.R;
 
-public class AddPatientActivity extends FragmentActivity implements CalendarDatePickerDialogFragment.OnDateSetListener {
+public class AddPatientActivity extends FragmentActivity  {
 
-    EditText fname, lname, address, phone;
+    EditText fname, lname, address, phone,txtDOB;
     Spinner gender;
     Button btnSave;
-    TextView dateOfBirth;
-    Calendar now = Calendar.getInstance();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
     PatientDTO patientDTO;
     boolean isEdit = false;
 
@@ -41,8 +38,8 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
         lname = findViewById(R.id.txtLname);
         address = findViewById(R.id.txtAddress);
         phone = findViewById(R.id.txtPhone);
-        dateOfBirth = findViewById(R.id.txtDOB);
         gender = findViewById(R.id.spinnerGender);
+        txtDOB = findViewById(R.id.txtDOB);
         btnSave = findViewById(R.id.btnSave);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -59,21 +56,10 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
         });
 
 
-        dateOfBirth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
-                        .setOnDateSetListener(AddPatientActivity.this)
-                        .setPreselectedDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
-                        .setFirstDayOfWeek(Calendar.SUNDAY)
-                        .setDoneText("Ok")
-                        .setCancelText("Cancel");
-                cdp.show(getSupportFragmentManager(), "Show");
-            }
-        });
 
         if (isEdit && patientDTO != null) {
-            now.setTimeInMillis(patientDTO.getDateOfBirth());
+            txtDOB.setText(patientDTO.getAge()+"");
+
             fname.setText(patientDTO.getFirstname());
             lname.setText(patientDTO.getLastname());
             address.setText(patientDTO.getAddress());
@@ -98,7 +84,6 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
             int pos4 = phone.getText().length();
             phone.setSelection(pos4);
         }
-        dateOfBirth.setText(dateFormat.format(now.getTime()));
     }
 
     private void updatePatient() {
@@ -107,7 +92,7 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
         patientDTO.setAddress(address.getText().toString());
         patientDTO.setPhone(phone.getText().toString());
         patientDTO.setGender(gender.getSelectedItem().toString());
-        patientDTO.setDateOfBirth(now.getTimeInMillis());
+        patientDTO.setAge(Integer.valueOf(txtDOB.getText().toString()));
 
         new DatabaseService(this).updatePatient(patientDTO);
         finish();
@@ -120,7 +105,7 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
         patientDTO.setAddress(address.getText().toString());
         patientDTO.setPhone(phone.getText().toString());
         patientDTO.setGender(gender.getSelectedItem().toString());
-        patientDTO.setDateOfBirth(now.getTimeInMillis());
+        patientDTO.setAge(Integer.valueOf(txtDOB.getText().toString()));
 
         new DatabaseService(this).createPatient(patientDTO);
         finish();
@@ -140,11 +125,12 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
         } else if (TextUtils.isEmpty(phone.getText())) {
             phone.setError(getText(R.string.error_empty_field));
             valid = false;
-        } else if (TextUtils.isEmpty(dateOfBirth.getText())) {
-            dateOfBirth.setError(getText(R.string.error_empty_field));
-            valid = false;
         } else if (!TextUtils.isEmpty(phone.getText()) && phone.getText().length() < 7) {
-            dateOfBirth.setError(getText(R.string.invalide_phone_));
+            phone.setError(getText(R.string.invalide_phone_));
+            valid = false;
+        }
+        else if (TextUtils.isEmpty(txtDOB.getText())) {
+            txtDOB.setError(getText(R.string.error_empty_field));
             valid = false;
         }
 
@@ -152,9 +138,5 @@ public class AddPatientActivity extends FragmentActivity implements CalendarDate
     }
 
 
-    @Override
-    public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
-        now.set(year, monthOfYear, dayOfMonth);
-        dateOfBirth.setText(dateFormat.format(now.getTime()));
-    }
+
 }

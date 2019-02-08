@@ -106,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " address TEXT NOT NULL, " +
                 " phone TEXT NOT NULL, " +
                 " gender TEXT NOT NULL, " +
-                " dateOfBirth NUMERIC DEFAULT NULL ); ";
+                " age NUMERIC DEFAULT NULL ); ";
 
         db.execSQL(qb);
     }

@@ -57,7 +57,7 @@ public class PatientRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         final PatientDTO patientDTO = list.get(position);
         final PatientViewHolder holder = (PatientViewHolder) myView;
         if (patientDTO != null ) {
-            int age = TypeHelper.getAge(patientDTO.getDateOfBirth());
+            int age = patientDTO.getAge();
             holder.txtAge.setText("" + age);
             holder.txtUsername.setText(patientDTO.getFirstname() + " " + patientDTO.getLastname());
             holder.txtPhone.setText(patientDTO.getPhone()+"");
