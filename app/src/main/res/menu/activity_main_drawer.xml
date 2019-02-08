@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/view_appointments"
+            android:title="Appointments" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/patient_info"
+            android:title="Patient Details" />
+
+    </group>
+
+    <item android:title="Add Data">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/add_appointment"
+                android:title="Add Appointment" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/add_patient"
+                android:title="Add Patient" />
+        </menu>
+    </item>
+
+</menu>
