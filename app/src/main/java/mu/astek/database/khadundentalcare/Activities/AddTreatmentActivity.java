@@ -17,10 +17,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.nio.channels.FileChannel;
 
 import mu.astek.database.khadundentalcare.DTO.AppointmentDTO;
 import mu.astek.database.khadundentalcare.DTO.TreatmentDTO;
@@ -79,10 +88,15 @@ public class AddTreatmentActivity extends AppCompatActivity {
         txtFiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+               /* Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES);*/
+
+                Intent intentPDF = new Intent(Intent.ACTION_GET_CONTENT);
+                intentPDF.setType("application/pdf");
+                intentPDF.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(intentPDF,1212);
             }
         });
 
@@ -119,8 +133,35 @@ public class AddTreatmentActivity extends AppCompatActivity {
                 //do something with the image (save it to some directory or whatever you need to do with it here)
             }
         }
+
+        if(requestCode == 1212){
+            Uri uri = data.getData();
+            try {
+                saveFile(uri,"File.pdf");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+
+    private void saveFile(Uri sourceUri, String photoName) throws IOException {
+
+        InputStream in = null;
+        try {
+            in = getContentResolver().openInputStream(sourceUri);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        OutputStream out = new FileOutputStream(new File(getOutputMediaDirectoryProfilePic()+"/"+photoName));
+        byte[] buf = new byte[1024];
+        int len;
+        while((len=in.read(buf))>0){
+            out.write(buf,0,len);
+        }
+        out.close();
+        in.close();
+}
     public final static void savePhotoProfile(String photoName, byte[] photo) {
         Log.i(TAG, "Saving photo:" + photoName);
         File dir = getOutputMediaDirectoryProfilePic();
@@ -159,6 +200,24 @@ public class AddTreatmentActivity extends AppCompatActivity {
     }
 
 
+    private String getRealPathFromURI( Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } catch (Exception e) {
+            Log.e(TAG, "getRealPathFromURI Exception : " + e.toString());
+            return "";
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
     public byte[] getBytes(Uri data)  {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         FileInputStream fis;
@@ -175,6 +234,8 @@ public class AddTreatmentActivity extends AppCompatActivity {
         byte[] bbytes = baos.toByteArray();
         return bbytes;
     }
+
+
 
     public  String getImagePath(Uri uri){
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
