@@ -2,6 +2,8 @@ package mu.astek.database.khadundentalcare;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +13,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import mu.astek.database.khadundentalcare.Activities.AddTreatmentActivity;
 import mu.astek.database.khadundentalcare.DTO.AppointmentDTO;
 import mu.astek.database.khadundentalcare.DTO.PatientDTO;
+import mu.astek.database.khadundentalcare.DTO.TreatmentDTO;
 import mu.astek.database.khadundentalcare.Utils.TypeHelper;
+
+import static mu.astek.database.khadundentalcare.Utils.TypeHelper.getUriList;
 
 
 public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -51,10 +57,35 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         final AppointmentDTO appointmentDTO = list.get(position);
         final TaskViewHolder holder = (TaskViewHolder) myView;
         if (appointmentDTO.getTreatment() != null) {
+            TreatmentDTO treatmentDTO = appointmentDTO.getTreatment();
             holder.linearTreatment.setVisibility(View.VISIBLE);
             holder.txtComments.setText(appointmentDTO.getTreatment().getDetails());
             holder.txtFees.setText(appointmentDTO.getTreatment().getFees()+"");
             holder.btnAddTreatment.setVisibility(View.GONE);
+            if (treatmentDTO.getImages() != null) {
+                String imageUris = treatmentDTO.getImages();
+                List<String> list = Arrays.asList(imageUris.split("--"));
+                List<Uri> uriList = getUriList(list);
+                if(!uriList.isEmpty()){
+                    holder.linearImages.setVisibility(View.VISIBLE);
+                    ImageAdapter imageAdapter = new ImageAdapter(uriList, context,true);
+                    holder.recyclerviewPhoto.setAdapter(imageAdapter);
+                    final LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                    holder.recyclerviewPhoto.setLayoutManager(layoutManager);
+                }
+            }
+            if (treatmentDTO.getPdfs() != null) {
+                String pdfs = treatmentDTO.getPdfs();
+                List<String> pdfNames = Arrays.asList(pdfs.split("--"));
+                List<Uri> pdfList = getUriList(pdfNames);
+                if(!pdfList.isEmpty()){
+                    holder.linearPdf.setVisibility(View.VISIBLE);
+                    PdfAdapter pdfAdapter = new PdfAdapter(pdfList, context,true);
+                    holder.recyclerPdf.setAdapter(pdfAdapter);
+                    final LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+                    holder.recyclerPdf.setLayoutManager(layoutManager);
+                }
+            }
 
         } else {
             holder.linearTreatment.setVisibility(View.GONE);
@@ -116,7 +147,8 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
     public class TaskViewHolder extends AppointmentRecyclerAdapter.ViewHolder {
         TextView txtUsername, txtAddress, txtAge, txtPhone, txtComments, txtFees, txtDate;
         Button btnAddTreatment, btnEditTreatment;
-        LinearLayout linearTreatment;
+        LinearLayout linearTreatment, linearImages, linearPdf;
+        RecyclerView recyclerviewPhoto, recyclerPdf;
 
         public TaskViewHolder(View v) {
             super(v);
@@ -130,7 +162,10 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             btnAddTreatment = v.findViewById(R.id.btnAddTreatment);
             btnEditTreatment = v.findViewById(R.id.btnEditTreatment);
             linearTreatment = v.findViewById(R.id.linearTreatment);
-
+            linearImages = v.findViewById(R.id.linearImages);
+            linearPdf = v.findViewById(R.id.linearPdf);
+            recyclerviewPhoto = v.findViewById(R.id.recyclerviewPhoto);
+            recyclerPdf = v.findViewById(R.id.recyclerPdf);
         }
     }
 

@@ -2,7 +2,9 @@ package mu.astek.database.khadundentalcare;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import java.io.File;
 import java.util.List;
 
 
@@ -21,11 +25,13 @@ public class ImageAdapter extends RecyclerView.Adapter {
     final private List<Uri> list;
 
     final private Context context;
+    boolean viewOnly = false;
 
-    public ImageAdapter(final List<Uri> imageUrIList, final Context context) {
+    public ImageAdapter(final List<Uri> imageUrIList, final Context context,Boolean view) {
 
         this.list = imageUrIList; // list
         this.context = context;
+        this.viewOnly = view;
     }
 
     @Override
@@ -43,16 +49,20 @@ public class ImageAdapter extends RecyclerView.Adapter {
         final Uri image = list.get(position);
         view.img_foto.setVisibility(View.VISIBLE);
 
-            Glide.with(context).load(image)
-                    .into(view.img_foto);
+        Glide.with(context).load(image)
+                .into(view.img_foto);
+        if(viewOnly){
+            view.imgDelete.setVisibility(View.GONE);
+        }
 
-            view.imgDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    list.remove(position);
-                    notifyDataSetChanged();
-                }
-            });
+        view.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
 
        // Picasso.with(context).load(image).into(view.img_foto);
     }
@@ -89,5 +99,18 @@ public class ImageAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         return position;
+    }
+
+    public final static File getOutputMediaDirectoryProfilePic() {
+        // External sdcard location
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), ".Dentist");
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+        return mediaStorageDir;
     }
 }

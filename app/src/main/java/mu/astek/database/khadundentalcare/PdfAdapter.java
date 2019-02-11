@@ -22,11 +22,13 @@ public class PdfAdapter extends RecyclerView.Adapter {
     final private List<Uri> list;
 
     final private Context context;
+    boolean viewOnly = false;
 
-    public PdfAdapter(final List<Uri> imageUrIList, final Context context) {
+    public PdfAdapter(final List<Uri> imageUrIList, final Context context,Boolean isEdit) {
 
         this.list = imageUrIList; // list
         this.context = context;
+        this.viewOnly = isEdit;
     }
 
     @Override
@@ -41,6 +43,9 @@ public class PdfAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
         final ImageViewHolder view = (ImageViewHolder) holder;
+        if(viewOnly){
+            view.imgDelete.setVisibility(View.GONE);
+        }
         view.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

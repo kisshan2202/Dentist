@@ -73,6 +73,8 @@ public class AddTreatmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isEdit) {
+                    linearImage.setVisibility(View.GONE);
+                    linearPdf.setVisibility(View.GONE);
                     String comment = txtDetails.getText().toString();
                     Integer fee = Integer.valueOf(txtFees.getText().toString());
                     TreatmentDTO treatmentDTO = appointment.getTreatment();
@@ -179,7 +181,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
 
                         //savePhotoProfile("File" + i + ".jpg", getBytes(imageUri));
                     }
-                    imageAdapter = new ImageAdapter(uriList, AddTreatmentActivity.this);
+                    imageAdapter = new ImageAdapter(uriList, AddTreatmentActivity.this,false);
                     recyclerviewPhoto.setAdapter(imageAdapter);
                     final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
                     recyclerviewPhoto.setLayoutManager(layoutManager);
@@ -193,7 +195,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
             Uri uri = data.getData();
             pdfList.add(uri);
             recyclerPdf.setVisibility(View.VISIBLE);
-            pdfAdapter = new PdfAdapter(pdfList, AddTreatmentActivity.this);
+            pdfAdapter = new PdfAdapter(pdfList, AddTreatmentActivity.this,false);
             recyclerPdf.setAdapter(pdfAdapter);
             final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             recyclerPdf.setLayoutManager(layoutManager);
@@ -242,7 +244,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
 
     }
 
-    public final static void savePhotoProfile(String photoName, byte[] photo) {
+    public final void savePhotoProfile(String photoName, byte[] photo) {
         Log.i(TAG, "Saving photo:" + photoName);
         File dir = getOutputMediaDirectoryProfilePic();
         if (dir != null && photo != null) {
@@ -266,7 +268,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
         }
     }
 
-    public final static File getOutputMediaDirectoryProfilePic() {
+    public final File getOutputMediaDirectoryProfilePic() {
         // External sdcard location
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), ".Dentist");
 
