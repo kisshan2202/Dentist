@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -41,19 +42,18 @@ public class MainActivity extends AppCompatActivity
         databaseService = new DatabaseService(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder(); StrictMode.setVmPolicy(builder.build());
 
         if (Build.VERSION.SDK_INT >= 23)
         {
-            if (checkPermission())
-            {
+            if (checkPermission()) {
                 // Code for above or equal 23 API Oriented Device
                 // Your Permission granted already .Do next code
             } else {
                 requestPermission(); // Code for permission
             }
         }
-        else
-        {
+        else {
 
             // Code for Below 23 API Oriented Device
             // Do next code

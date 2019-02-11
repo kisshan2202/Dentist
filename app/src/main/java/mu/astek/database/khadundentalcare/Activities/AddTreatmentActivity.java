@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -56,6 +57,8 @@ public class AddTreatmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder(); StrictMode.setVmPolicy(builder.build());
+
         setContentView(R.layout.activity_add_treatment);
         service = new DatabaseService(this);
         btnSave = findViewById(R.id.btnSave);
@@ -125,7 +128,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentPDF = new Intent(Intent.ACTION_GET_CONTENT);
-                intentPDF.setType("application/pdf");
+                intentPDF.setType("image/jpg");
                 intentPDF.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intentPDF, 1212);
             }

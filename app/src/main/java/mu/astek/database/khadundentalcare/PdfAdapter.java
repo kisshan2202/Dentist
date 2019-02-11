@@ -1,6 +1,8 @@
 package mu.astek.database.khadundentalcare;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -22,7 +25,7 @@ public class PdfAdapter extends RecyclerView.Adapter {
     final private List<Uri> list;
 
     final private Context context;
-    boolean viewOnly = false;
+    boolean viewOnly;
 
     public PdfAdapter(final List<Uri> imageUrIList, final Context context,Boolean isEdit) {
 
@@ -54,6 +57,21 @@ public class PdfAdapter extends RecyclerView.Adapter {
             }
         });
 
+        view.img_foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Uri pdfPath = list.get(position);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(pdfPath, "application/pdf");
+
+                    try {
+                        context.startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        //if user doesn't have pdf reader instructing to download a pdf reader
+                    }
+                }
+
+        });
 
     }
 
