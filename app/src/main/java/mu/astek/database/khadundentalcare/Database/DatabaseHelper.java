@@ -127,6 +127,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String qb = "CREATE TABLE IF NOT EXISTS treatment (" +
                 " id INTEGER PRIMARY KEY NOT NULL, " +
                 " details TEXT NOT NULL, " +
+                " images TEXT DEFAULT NULL, " +
+                " pdfs TEXT DEFAULT NULL, " +
                 " fees NUMERIC DEFAULT NULL , " +
                 "     FOREIGN KEY(id) REFERENCES appointment(appointmentId) ON DELETE SET NULL ON UPDATE SET NULL ); ";
 

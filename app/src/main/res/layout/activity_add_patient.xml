@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:background="@drawable/border_white"
+        android:background="@drawable/border_red"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingRight="10dp">

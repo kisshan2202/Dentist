@@ -45,6 +45,12 @@ public final class TreatmentDAO {
         if (dto.getId() != null) {
             values.put("id", dto.getId());
         }
+        if(dto.getPdfs()!=null){
+            values.put("pdfs", dto.getPdfs());
+        }
+        if(dto.getImages()!=null){
+            values.put("images", dto.getImages());
+        }
 
         values.put("details", dto.getDetails());
         values.put("fees", dto.getFees());
@@ -69,6 +75,8 @@ public final class TreatmentDAO {
             treatmentDTO = new TreatmentDTO();
             treatmentDTO.setId(id);
             treatmentDTO.setDetails(res.getString(res.getColumnIndexOrThrow("details")));
+            treatmentDTO.setImages(res.getString(res.getColumnIndexOrThrow("images")));
+            treatmentDTO.setPdfs(res.getString(res.getColumnIndexOrThrow("pdfs")));
             treatmentDTO.setFees(res.getInt(res.getColumnIndexOrThrow("fees")));
 
             res.moveToNext();

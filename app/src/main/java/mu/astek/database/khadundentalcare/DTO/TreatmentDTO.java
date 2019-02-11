@@ -7,6 +7,8 @@ public class TreatmentDTO implements Serializable {
     Integer id;
     String details;
     Integer fees;
+    String pdfs;
+    String images;
 
     public String getDetails() {
         return details;
@@ -30,5 +32,21 @@ public class TreatmentDTO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPdfs() {
+        return pdfs;
+    }
+
+    public void setPdfs(String pdfs) {
+        this.pdfs = pdfs;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
     }
 }
