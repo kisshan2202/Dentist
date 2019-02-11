@@ -6,9 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
-    android:background="@color/bpBlue"
+    android:background="@android:color/white"
+    android:gravity="center"
     android:orientation="vertical">
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        app:srcCompat="@drawable/applogo" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -28,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.7"
-        android:background="@drawable/background"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
@@ -37,6 +43,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent" />
     </LinearLayout>
+
 
     <ImageView
         android:id="@+id/imgDate"
