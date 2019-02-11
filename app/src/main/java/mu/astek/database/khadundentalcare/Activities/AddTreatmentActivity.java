@@ -71,13 +71,14 @@ public class AddTreatmentActivity extends AppCompatActivity {
 
         appointment = (AppointmentDTO) getIntent().getSerializableExtra("appointment");
         isEdit = getIntent().getBooleanExtra("edit", false);
-
+        if (isEdit) {
+            linearImage.setVisibility(View.GONE);
+            linearPdf.setVisibility(View.GONE);
+        }
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isEdit) {
-                    linearImage.setVisibility(View.GONE);
-                    linearPdf.setVisibility(View.GONE);
                     String comment = txtDetails.getText().toString();
                     Integer fee = Integer.valueOf(txtFees.getText().toString());
                     TreatmentDTO treatmentDTO = appointment.getTreatment();

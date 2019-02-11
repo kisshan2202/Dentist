@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     android:layout_marginTop="2dp"
     android:background="@drawable/border_viewholder"
     android:gravity="center_vertical"
@@ -162,7 +162,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".3"
                 android:gravity="center|center_vertical"
-                android:text="Treament Images :"
+                android:text="Treatment Images :"
                 android:textColor="@color/app_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
