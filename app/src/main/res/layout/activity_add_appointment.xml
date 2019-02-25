@@ -41,17 +41,7 @@
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimary" />
             </android.support.design.widget.TextInputLayout>
-            <!--<TextView
-                android:id="@+id/txtDate"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".6"
-                android:ems="10"
-                android:gravity="center_vertical"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />-->
+
         </LinearLayout>
 
         <LinearLayout
@@ -149,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:background="@color/design_default_color_primary"
+            android:background="#1A237E"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Save"
