@@ -4,6 +4,7 @@ package mu.astek.database.khadundentalcare.Activities;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,8 +33,8 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
     DatabaseService service;
     List<PatientDTO> list;
     Calendar now = Calendar.getInstance();
-    TextView txtDate,txtTime;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    TextInputEditText txtDate,txtTime;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     Button btnSave;
     LinearLayout linearNewPatient;
