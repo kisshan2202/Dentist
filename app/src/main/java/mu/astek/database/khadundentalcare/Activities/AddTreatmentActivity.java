@@ -129,7 +129,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentPDF = new Intent(Intent.ACTION_GET_CONTENT);
-                intentPDF.setType("image/jpg");
+                intentPDF.setType("application/pdf");
                 intentPDF.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intentPDF, 1212);
             }
@@ -192,6 +192,17 @@ public class AddTreatmentActivity extends AppCompatActivity {
                     //do something with the image (save it to some directory or whatever you need to do with it here)
 
                 }
+                else if (data.getData()!= null){
+                    Uri mImageUri=data.getData();
+                    recyclerviewPhoto.setVisibility(View.VISIBLE);
+                    uriList.add(mImageUri);
+
+                    imageAdapter = new ImageAdapter(uriList, AddTreatmentActivity.this,false);
+                    recyclerviewPhoto.setAdapter(imageAdapter);
+                    final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                    recyclerviewPhoto.setLayoutManager(layoutManager);
+                }
+
             }
         }
 

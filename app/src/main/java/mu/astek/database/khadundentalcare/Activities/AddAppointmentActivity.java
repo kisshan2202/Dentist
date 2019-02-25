@@ -118,7 +118,7 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
         list = service.getPatientList();
         if(!list.isEmpty()){
             ArrayAdapter adapter = new ArrayAdapter(AddAppointmentActivity.this,
-                    android.R.layout.simple_spinner_item,
+                   R.layout.spinner_item,
                     getPatient(list));
 
             spinnerPatient.setAdapter(adapter);

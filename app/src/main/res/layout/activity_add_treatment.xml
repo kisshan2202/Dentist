@@ -1,137 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@android:color/white"
+    android:background="@drawable/border_red"
     android:gravity="center"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha=".5"
-        android:src="@drawable/applogo" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/border_red"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <TextView
-            android:id="@+id/loginscrn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="10dp"
-            android:text="Add Treatment"
-            android:textColor="@color/bpRed_focused"
-            android:textColorHint="@color/colorBlue"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="Treatment Details :"
-                android:textColor="@color/colorBlue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtDetails"
+            <android.support.design.widget.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight=".6"
-                android:ems="10"
-                android:inputType="text"
-                android:singleLine="false"
-                android:textColorHint="@color/colorBlue"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txtFees"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:hint="Fees"
+                    android:inputType="number"
+                    android:textColorHint="@color/colorPrimary" />
+            </android.support.design.widget.TextInputLayout>
+            <!--<TextView
+                android:id="@+id/txtDate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.4"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="Fees (Rs) :"
-                android:textColor="@color/colorBlue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtFees"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight=".6"
                 android:ems="10"
-                android:inputType="number"
-                android:textColorHint="@color/colorBlue"
-                android:textSize="14sp" />
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />-->
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearImage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_green"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txtDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:hint="Treatment Details"
+                    android:inputType="text"
+                    android:textColorHint="@color/colorPrimary" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearPdf"
+            android:layout_width="225dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/bpWhite"
+            android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
 
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/bpLight_gray"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="Attach Image "
-                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="Attach PDF"
+                android:textColor="@color/bpLight_gray"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textColorHint="@color/colorBlue"
-                android:textSize="14sp"
-                android:tint="@color/colorAccent"
-                app:srcCompat="@drawable/icon_plus" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerviewPhoto"
+            android:id="@+id/recyclerPdf"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:scrollIndicators="bottom"
             android:visibility="gone">
@@ -139,38 +124,40 @@
         </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
-            android:id="@+id/linearPdf"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_green"
+            android:id="@+id/linearImage"
+            android:layout_width="225dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/bpWhite"
+            android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/bpLight_gray"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="right|center_vertical"
-                android:paddingRight="10dp"
-                android:text="Attach PDF "
-                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="Attach Image"
+                android:textColor="@color/bpLight_gray"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:ems="10"
-                android:inputType="number"
-                android:textColorHint="@color/colorBlue"
-                android:textSize="14sp"
-                android:tint="@color/colorAccent"
-                app:srcCompat="@drawable/icon_plus" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerPdf"
+            android:id="@+id/recyclerviewPhoto"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="85dp"
             android:layout_marginTop="10dp"
             android:scrollIndicators="bottom"
             android:visibility="gone">
@@ -179,15 +166,18 @@
 
         <Button
             android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
+            android:layout_width="225dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:background="@color/app_primary"
+            android:background="@color/design_default_color_primary"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Save"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+
     </LinearLayout>
 
 </RelativeLayout>

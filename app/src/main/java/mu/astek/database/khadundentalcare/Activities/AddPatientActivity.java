@@ -2,6 +2,7 @@ package mu.astek.database.khadundentalcare.Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,7 @@ import mu.astek.database.khadundentalcare.DTO.PatientDTO;
 import mu.astek.database.khadundentalcare.Database.DatabaseService;
 import mu.astek.database.khadundentalcare.R;
 
-public class AddPatientActivity extends FragmentActivity  {
+public class AddPatientActivity extends AppCompatActivity {
 
     EditText fname, lname, address, phone,txtDOB;
     Spinner gender;
