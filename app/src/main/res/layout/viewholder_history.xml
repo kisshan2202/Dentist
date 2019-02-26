@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     android:layout_marginTop="2dp"
     android:background="@drawable/border_viewholder"
     android:gravity="center_vertical"
@@ -17,7 +17,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:paddingLeft="20dp"
-        android:textColor="@color/app_primary"
+        android:textColor="@color/bpDark_gray"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingLeft="20dp"
-        android:paddingBottom="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="No Treatment "
         android:textColor="@android:color/white"
         android:textSize="18sp"
@@ -36,7 +37,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
@@ -44,7 +44,7 @@
 
         <Button
             android:id="@+id/btnAddTreatment"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@color/colorBlue"
             android:paddingLeft="20dp"
@@ -64,20 +64,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/border"
         android:gravity="center|center_horizontal"
         android:orientation="vertical"
         android:visibility="visible">
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:text="Treatment Details :"
-            android:textColor="@color/bpRed_focused"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,10 +81,11 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".3"
-                android:gravity="center_vertical"
+                android:gravity="center|right"
+                android:paddingRight="5dp"
                 android:text="Comments :"
                 android:textColor="@color/app_primary"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -105,8 +95,7 @@
                 android:layout_weight=".7"
                 android:singleLine="false"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
@@ -124,10 +113,11 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".3"
-                android:gravity="center_vertical"
+                android:gravity="center|right"
+                android:paddingRight="5dp"
                 android:text="Fees (Rs) :"
                 android:textColor="@color/app_primary"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -139,8 +129,7 @@
                 android:inputType="number"
                 android:text="550"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
@@ -162,8 +151,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".3"
                 android:gravity="center|center_vertical"
-                android:text="Treatment Images :"
-                android:textColor="@color/app_primary"
+                android:text="Images :"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -195,7 +184,7 @@
                 android:layout_weight=".3"
                 android:gravity="center|center_vertical"
                 android:text="Attachments :"
-                android:textColor="@color/app_primary"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -222,7 +211,7 @@
 
             <Button
                 android:id="@+id/btnEditTreatment"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="40dp"
                 android:background="@color/colorBlue"
                 android:paddingLeft="20dp"

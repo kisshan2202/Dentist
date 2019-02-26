@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
-        android:background="#f1f1f1"
+        android:background="@android:color/transparent"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:visibility="visible"
                 app:srcCompat="@drawable/applogo" />
 

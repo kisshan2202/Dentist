@@ -116,8 +116,7 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
             PatientDTO patientDTO = appointmentDTO.getPatientDTO();
             int age = patientDTO.getAge();
-            holder.txtAge.setText("" + age);
-            holder.txtUsername.setText(patientDTO.getFirstname() + " " + patientDTO.getLastname());
+            holder.txtUsername.setText(patientDTO.getFirstname() + " " + patientDTO.getLastname() +" \n("+age+" yrs)");
             holder.txtPhone.setText(patientDTO.getPhone());
             holder.txtAddress.setText(patientDTO.getAddress());
         }
@@ -145,7 +144,7 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
 
     public class TaskViewHolder extends AppointmentRecyclerAdapter.ViewHolder {
-        TextView txtUsername, txtAddress, txtAge, txtPhone, txtComments, txtFees, txtDate;
+        TextView txtUsername, txtAddress, txtPhone, txtComments, txtFees, txtDate;
         Button btnAddTreatment, btnEditTreatment;
         LinearLayout linearTreatment, linearImages, linearPdf;
         RecyclerView recyclerviewPhoto, recyclerPdf;
@@ -155,7 +154,6 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             txtDate = v.findViewById(R.id.txtDate);
             txtUsername = v.findViewById(R.id.txtUsername);
             txtAddress = v.findViewById(R.id.txtAddress);
-            txtAge = v.findViewById(R.id.txtAge);
             txtPhone = v.findViewById(R.id.txtPhone);
             txtComments = v.findViewById(R.id.txtComments);
             txtFees = v.findViewById(R.id.txtFees);

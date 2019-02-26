@@ -88,8 +88,13 @@ public class AddTreatmentActivity extends AppCompatActivity {
                     finish();
                 } else {
                     if (!TextUtils.isEmpty(txtDetails.getText()) && !TextUtils.isEmpty(txtFees.getText())) {
-                        pdfList = pdfAdapter.getList();
-                        uriList = imageAdapter.getList();
+                        if(pdfAdapter!=null){
+                            pdfList = pdfAdapter.getList();
+                        }
+                        if(imageAdapter!=null){
+                            uriList = imageAdapter.getList();
+                        }
+
 
                         String pdf = null;
                         if(!pdfList.isEmpty()){

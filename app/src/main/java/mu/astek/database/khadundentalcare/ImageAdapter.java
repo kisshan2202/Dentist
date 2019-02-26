@@ -70,7 +70,8 @@ public class ImageAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 Uri pdfPath = list.get(position);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(pdfPath, "application/pdf");
+                //intent.setDataAndType(pdfPath, "application/pdf");
+                intent.setDataAndType(pdfPath, "image/*");
 
                 try {
                     context.startActivity(intent);

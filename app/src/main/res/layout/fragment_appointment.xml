@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dp"
+        android:visibility="invisible"
         app:srcCompat="@drawable/applogo" />
 
     <android.support.design.widget.FloatingActionButton
