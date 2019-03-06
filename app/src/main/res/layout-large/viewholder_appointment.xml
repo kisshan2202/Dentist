@@ -30,8 +30,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgGender"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -57,7 +57,7 @@
                 android:text="Kisshan Haulkory"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -76,7 +76,7 @@
                     android:paddingTop="2dp"
                     android:text="village hall lane, laventure"
                     android:textColor="@android:color/black"
-                    android:textSize="12sp"
+                    android:textSize="20sp"
                     android:textStyle="italic" />
             </LinearLayout>
 
@@ -93,10 +93,11 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingTop="2dp"
+                    android:paddingRight="10dp"
                     android:text="57585698"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"
-                    android:textSize="12sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -116,15 +117,15 @@
 
         <Button
             android:id="@+id/btnAddTreatment"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
             android:background="@color/colorBlue"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Add Treatment"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:visibility="visible" />
     </LinearLayout>
@@ -155,7 +156,7 @@
                 android:gravity="center_vertical"
                 android:text="Fees (Rs) :"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -167,7 +168,7 @@
                 android:inputType="number"
                 android:text="550"
                 android:textColor="@android:color/black"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -187,7 +188,7 @@
                 android:gravity="center_vertical"
                 android:text="Comments :"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -197,7 +198,7 @@
                 android:layout_weight=".75"
                 android:singleLine="false"
                 android:textColor="@android:color/black"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -277,8 +278,8 @@
 
             <Button
                 android:id="@+id/btnEditTreatment"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
                 android:background="@color/colorBlue"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"

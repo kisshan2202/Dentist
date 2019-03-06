@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="100dp"
-    android:layout_height="85dp"
+    android:layout_width="125dp"
+    android:layout_height="100dp"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -28,7 +28,7 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:text="No Image"
                 android:textColor="#20b3be"
-                android:textSize="13dp"
+                android:textSize="18sp"
                 android:visibility="invisible" />
 
             <ImageView
@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/imgDelete"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:tint="@color/app_primary"
                 app:srcCompat="@drawable/ic_clear_search_holo_light" />
