@@ -32,7 +32,7 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -44,7 +44,7 @@
                     android:hint="Fees"
                     android:inputType="number"
                     android:textColorHint="@color/colorPrimary"
-                    android:textSize="20sp" />
+                    android:textSize="26sp" />
             </android.support.design.widget.TextInputLayout>
             <!--<TextView
                 android:id="@+id/txtDate"
@@ -68,7 +68,7 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -80,7 +80,7 @@
                     android:hint="Treatment Details"
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimary"
-                    android:textSize="20sp" />
+                    android:textSize="26sp" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 

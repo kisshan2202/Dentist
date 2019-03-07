@@ -196,7 +196,6 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:gravity="left"
-                android:entries="@array/gender_arrray"
                 android:prompt="@string/gender_prompt"
                 android:spinnerMode="dialog" />
 

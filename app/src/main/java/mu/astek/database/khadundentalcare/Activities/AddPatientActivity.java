@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -58,6 +59,12 @@ public class AddPatientActivity extends AppCompatActivity {
             }
         });
 
+        String[] mTestArray = getResources().getStringArray(R.array.gender_arrray);
+        ArrayAdapter adapter = new ArrayAdapter(AddPatientActivity.this,
+                R.layout.spinner_item,
+                mTestArray);
+
+        gender.setAdapter(adapter);
 
 
         if(!isEdit){
