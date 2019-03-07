@@ -7,4 +7,8 @@
     <color name="app_primary">#053cab</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 
+    <color name="colorControlNormal">#c5c5c5</color>
+    <color name="colorControlActivated">@color/colorBlue</color>
+    <color name="colorControlHighlight">@color/bpWhite</color>
+
 </resources>

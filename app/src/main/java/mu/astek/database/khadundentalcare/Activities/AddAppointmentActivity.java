@@ -1,7 +1,6 @@
 package mu.astek.database.khadundentalcare.Activities;
 
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -11,9 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
-
 
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
 import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
@@ -33,11 +29,12 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
     DatabaseService service;
     List<PatientDTO> list;
     Calendar now = Calendar.getInstance();
-    TextInputEditText txtDate,txtTime;
+    TextInputEditText txtDate, txtTime;
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     Button btnSave;
     LinearLayout linearNewPatient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +54,10 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
             public void onClick(View v) {
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
                         .setOnDateSetListener(AddAppointmentActivity.this)
-                        .setPreselectedDate(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
+                        .setPreselectedDate(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
                         .setDoneText("Ok")
                         .setCancelText("Cancel");
-                cdp.show(getSupportFragmentManager(),"Show date" );
+                cdp.show(getSupportFragmentManager(), "Show date");
             }
         });
         txtTime.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +84,8 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!list.isEmpty()){
-                   int x =  spinnerPatient.getSelectedItemPosition();
+                if (!list.isEmpty()) {
+                    int x = spinnerPatient.getSelectedItemPosition();
                     PatientDTO patientDTO = list.get(x);
                     AppointmentDTO appointmentDTO = new AppointmentDTO();
                     appointmentDTO.setPatientDTO(patientDTO);
@@ -98,13 +95,15 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
                 }
             }
         });
+
+
     }
 
     private String[] getPatient(List<PatientDTO> list) {
         String[] array = new String[list.size()];
         int index = 0;
-        for(PatientDTO patientDTO:list){
-            String val = patientDTO.getFirstname()+ " "+patientDTO.getLastname();
+        for (PatientDTO patientDTO : list) {
+            String val = patientDTO.getFirstname() + " " + patientDTO.getLastname();
             array[index] = val;
             index++;
         }
@@ -116,9 +115,9 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
     protected void onResume() {
         super.onResume();
         list = service.getPatientList();
-        if(!list.isEmpty()){
+        if (!list.isEmpty()) {
             ArrayAdapter adapter = new ArrayAdapter(AddAppointmentActivity.this,
-                   R.layout.spinner_item,
+                    R.layout.spinner_item,
                     getPatient(list));
 
             spinnerPatient.setAdapter(adapter);
@@ -127,15 +126,15 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
 
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
-        now.set(year,monthOfYear,dayOfMonth);
+        now.set(year, monthOfYear, dayOfMonth);
         txtDate.setText(dateFormat.format(now.getTime()));
     }
 
 
     @Override
     public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-        now.set(Calendar.HOUR_OF_DAY,hourOfDay);
-        now.set(Calendar.MINUTE,minute);
+        now.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        now.set(Calendar.MINUTE, minute);
 
         txtTime.setText(timeFormat.format(now.getTime()));
     }

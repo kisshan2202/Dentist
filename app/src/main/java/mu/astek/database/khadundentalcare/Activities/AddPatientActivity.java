@@ -1,10 +1,12 @@
 package mu.astek.database.khadundentalcare.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -58,6 +60,21 @@ public class AddPatientActivity extends AppCompatActivity {
 
 
 
+        if(!isEdit){
+            gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
+
         if (isEdit && patientDTO != null) {
             txtDOB.setText(patientDTO.getAge()+"");
 
@@ -70,6 +87,7 @@ public class AddPatientActivity extends AppCompatActivity {
             } else {
                 gender.setSelection(1);
             }
+
 
             btnSave.setText("Update Details");
 
