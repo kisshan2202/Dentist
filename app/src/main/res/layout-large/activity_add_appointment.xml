@@ -39,6 +39,7 @@
                     android:focusable="false"
                     android:hint="Appointment Date"
                     android:inputType="text"
+                    android:paddingLeft="20dp"
                     android:textColorHint="@color/colorPrimary"
                     android:textSize="26sp" />
             </android.support.design.widget.TextInputLayout>
@@ -65,11 +66,24 @@
                     android:focusable="false"
                     android:hint="Appointment Time"
                     android:inputType="text"
+                    android:paddingLeft="20dp"
                     android:textColorHint="@color/colorPrimary"
                     android:textSize="26sp" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/borderwhite"
+            android:hint="Search Patient"
+            android:paddingLeft="10dp"
+            android:text=""
+            android:textSize="26sp" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
