@@ -1,13 +1,17 @@
 package mu.astek.database.khadundentalcare.DTO;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.io.Serializable;
+
+@IgnoreExtraProperties
 public class AppointmentDTO implements Serializable {
     PatientDTO patientDTO;
     Integer appointmentID;
     Long date;
     Boolean presence;
+    Boolean savedOffline;
     TreatmentDTO treatment;
 
     public Long getDate() {
@@ -48,5 +52,13 @@ public class AppointmentDTO implements Serializable {
 
     public void setPatientDTO(PatientDTO patientDTO) {
         this.patientDTO = patientDTO;
+    }
+
+    public Boolean getSavedOffline() {
+        return savedOffline;
+    }
+
+    public void setSavedOffline(Boolean savedOffline) {
+        this.savedOffline = savedOffline;
     }
 }

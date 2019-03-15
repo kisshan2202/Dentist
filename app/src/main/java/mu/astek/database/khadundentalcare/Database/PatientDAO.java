@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mu.astek.database.khadundentalcare.DTO.PatientDTO;
+import mu.astek.database.khadundentalcare.Utils.TypeHelper;
 
 
 public final class PatientDAO {
@@ -52,6 +53,7 @@ public final class PatientDAO {
         values.put("lastname", dto.getLastname());
         values.put("address", dto.getAddress());
         values.put("phone", dto.getPhone());
+        values.put("offline", dto.getSavedOffline());
         values.put("gender", dto.getGender());
 
         if (dto.getAge() != null)
@@ -83,6 +85,42 @@ public final class PatientDAO {
             dto.setAddress(res.getString(res.getColumnIndexOrThrow("address")));
             dto.setPhone(res.getString(res.getColumnIndexOrThrow("phone")));
             dto.setGender(res.getString(res.getColumnIndexOrThrow("gender")));
+            dto.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
+
+            list.add(dto);
+
+            res.moveToNext();
+        }
+        res.close();
+
+        return list;
+    }
+
+    public List<PatientDTO> getOfflineList() {
+
+        final String query =
+                "SELECT * " +
+                        " FROM " + TABLE_NAME+
+                        " WHERE offline = " + 0;
+
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final Cursor res = db.rawQuery(query, null);
+        res.moveToFirst();
+
+        final List<PatientDTO> list = new ArrayList<>();
+        PatientDTO dto;
+
+        while (!res.isAfterLast()) {
+
+            dto = new PatientDTO();
+            dto.setPatientId(res.getInt(res.getColumnIndex("patientId")));
+            dto.setAge(res.getInt(res.getColumnIndexOrThrow("age")));
+            dto.setFirstname(res.getString(res.getColumnIndexOrThrow("firstname")));
+            dto.setLastname(res.getString(res.getColumnIndexOrThrow("lastname")));
+            dto.setAddress(res.getString(res.getColumnIndexOrThrow("address")));
+            dto.setPhone(res.getString(res.getColumnIndexOrThrow("phone")));
+            dto.setGender(res.getString(res.getColumnIndexOrThrow("gender")));
+            dto.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
 
             list.add(dto);
 
@@ -114,7 +152,7 @@ public final class PatientDAO {
             patientDTO.setAddress(res.getString(res.getColumnIndexOrThrow("address")));
             patientDTO.setPhone(res.getString(res.getColumnIndexOrThrow("phone")));
             patientDTO.setGender(res.getString(res.getColumnIndexOrThrow("gender")));
-
+            patientDTO.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
             res.moveToNext();
         }
         res.close();

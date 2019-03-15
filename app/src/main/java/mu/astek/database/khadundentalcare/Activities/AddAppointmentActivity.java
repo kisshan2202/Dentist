@@ -104,6 +104,7 @@ public class AddAppointmentActivity extends AppCompatActivity implements Calenda
                     AppointmentDTO appointmentDTO = new AppointmentDTO();
                     appointmentDTO.setPatientDTO(patientDTO);
                     appointmentDTO.setDate(now.getTimeInMillis());
+                    appointmentDTO.setSavedOffline(false);
                     new DatabaseService(AddAppointmentActivity.this).createAppointment(appointmentDTO);
                     finish();
                 }

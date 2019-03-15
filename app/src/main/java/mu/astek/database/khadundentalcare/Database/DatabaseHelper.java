@@ -106,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " address TEXT NOT NULL, " +
                 " phone TEXT NOT NULL, " +
                 " gender TEXT NOT NULL, " +
+                " offline INTEGER DEFAULT 0, " +
                 " age NUMERIC DEFAULT NULL ); ";
 
         db.execSQL(qb);
@@ -117,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " appointmentId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 " patientId INTEGER NOT NULL, " +
                 " presence INTEGER DEFAULT 0, " +
+                " offline INTEGER DEFAULT 0, " +
                 " dateAppointment NUMERIC DEFAULT NULL , " +
                 "     FOREIGN KEY(patientId) REFERENCES patient(patientId) ON DELETE SET NULL ON UPDATE SET NULL ); ";
 

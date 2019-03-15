@@ -1,5 +1,8 @@
 package mu.astek.database.khadundentalcare.Utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -61,4 +64,22 @@ public class TypeHelper {
         }
         return mediaStorageDir;
     }
+
+    private static NetworkInfo activeNetwork;
+
+
+    private static void setActiveNetwork(final Context context) {
+
+        final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        activeNetwork = cm.getActiveNetworkInfo();
+    }
+
+    public static boolean isConnected(final Context context) {
+
+        setActiveNetwork(context);
+
+        return activeNetwork != null && activeNetwork.isConnected();
+    }
+
 }

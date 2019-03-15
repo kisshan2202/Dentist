@@ -40,6 +40,9 @@ public class DatabaseService {
     public List<PatientDTO> getPatientList(){
         return patientDAO.getlistPatient();
     }
+    public List<PatientDTO> getOfflinePatientList(){
+        return patientDAO.getOfflineList();
+    }
 
    public void createAppointment(AppointmentDTO appointmentDTO) {
         appointmentDAO.createAppointment(appointmentDTO);
@@ -62,7 +65,11 @@ public class DatabaseService {
     }
 
     public List<AppointmentDTO> getAppointmentList() {
-        return appointmentDAO.getAppointmentList();
+        return appointmentDAO.getOfflineList();
+    }
+
+    public List<AppointmentDTO> getOfflineAppointments() {
+        return appointmentDAO.getOfflineList();
     }
 
    public void createTreatment(TreatmentDTO treatmentDTO){

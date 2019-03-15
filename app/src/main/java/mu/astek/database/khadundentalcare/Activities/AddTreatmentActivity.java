@@ -84,6 +84,8 @@ public class AddTreatmentActivity extends AppCompatActivity {
                     TreatmentDTO treatmentDTO = appointment.getTreatment();
                     treatmentDTO.setFees(fee);
                     treatmentDTO.setDetails(comment);
+                    appointment.setSavedOffline(false);
+                    service.updateAppointment(appointment);
                     service.updateTreatment(treatmentDTO);
                     finish();
                 } else {
@@ -113,6 +115,8 @@ public class AddTreatmentActivity extends AppCompatActivity {
                         treatmentDTO.setDetails(comment);
                         treatmentDTO.setPdfs(pdf);
                         treatmentDTO.setImages(img);
+                        appointment.setSavedOffline(false);
+                        service.updateAppointment(appointment);
                         service.createTreatment(treatmentDTO);
                         finish();
                     }
@@ -331,6 +335,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
             while (-1 != (n = fis.read(buf)))
                 baos.write(buf, 0, n);
         } catch (Exception e) {
+            Log.e(TAG, "getBytes Exception : " + e.toString());
             e.printStackTrace();
         }
 

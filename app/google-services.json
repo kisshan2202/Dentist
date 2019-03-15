@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "365034405802",
+    "firebase_url": "https://dental-care-d020b.firebaseio.com",
+    "project_id": "dental-care-d020b",
+    "storage_bucket": "dental-care-d020b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365034405802:android:b30f08c11faf14a0",
+        "android_client_info": {
+          "package_name": "mu.astek.database.khadundentalcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365034405802-ooai4bdprj7frbdu55jhbfrt9hr5h05v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mu.astek.database.khadundentalcare",
+            "certificate_hash": "a493e9b6fff4f981b41309063aec440b9af23b30"
+          }
+        },
+        {
+          "client_id": "365034405802-pbitdrg75jl7br211gluf22fq1kce9fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2U6tvyDTYSoBRSJig041m1r121ljZM2Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365034405802-pbitdrg75jl7br211gluf22fq1kce9fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

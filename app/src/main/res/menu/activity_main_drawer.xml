@@ -28,4 +28,14 @@
         </menu>
     </item>
 
+    <item android:title="Sync Offline">
+        <menu>
+            <item
+                android:id="@+id/sync"
+                android:icon="@drawable/sync"
+                android:title="Sync Data" />
+
+        </menu>
+    </item>
+
 </menu>

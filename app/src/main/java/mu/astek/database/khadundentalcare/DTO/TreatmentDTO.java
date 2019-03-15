@@ -1,8 +1,10 @@
 package mu.astek.database.khadundentalcare.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
-
+@IgnoreExtraProperties
 public class TreatmentDTO implements Serializable {
     Integer id;
     String details;

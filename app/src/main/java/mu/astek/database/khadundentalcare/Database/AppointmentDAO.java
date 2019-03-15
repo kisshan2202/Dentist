@@ -58,6 +58,7 @@ public final class AppointmentDAO {
         }
 
         values.put("presence", dto.getPresence());
+        values.put("offline", dto.getSavedOffline());
 
         if (dto.getDate() != null)
             values.put("dateAppointment", dto.getDate());
@@ -88,6 +89,7 @@ public final class AppointmentDAO {
             dto.setAppointmentID(res.getInt(res.getColumnIndex("appointmentId")));
             dto.setDate(res.getLong(res.getColumnIndexOrThrow("dateAppointment")));
             dto.setPresence(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("presence"))));
+            dto.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
             dto.setPatientDTO(patientDAO.getPatientById(patientID));
             TreatmentDTO treatmentDTO = treatmentDAO.getTreatmentByAppointmentID(dto.getAppointmentID());
             if (treatmentDTO != null) {
@@ -137,6 +139,7 @@ public final class AppointmentDAO {
             dto.setAppointmentID(res.getInt(res.getColumnIndex("appointmentId")));
             dto.setDate(res.getLong(res.getColumnIndexOrThrow("dateAppointment")));
             dto.setPresence(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("presence"))));
+            dto.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
             dto.setPatientDTO(patientDAO.getPatientById(res.getInt(res.getColumnIndexOrThrow("patientId"))));
             TreatmentDTO treatmentDTO = treatmentDAO.getTreatmentByAppointmentID(dto.getAppointmentID());
             if (treatmentDTO != null) {
@@ -174,6 +177,7 @@ public final class AppointmentDAO {
             dto.setAppointmentID(res.getInt(res.getColumnIndex("appointmentId")));
             dto.setDate(res.getLong(res.getColumnIndexOrThrow("dateAppointment")));
             dto.setPresence(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("presence"))));
+            dto.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
             dto.setPatientDTO(patientDAO.getPatientById(res.getInt(res.getColumnIndexOrThrow("patientId"))));
 
             TreatmentDTO treatmentDTO = treatmentDAO.getTreatmentByAppointmentID(dto.getAppointmentID());
@@ -181,6 +185,44 @@ public final class AppointmentDAO {
                 dto.setTreatment(treatmentDTO);
             }
 
+            list.add(dto);
+
+            res.moveToNext();
+        }
+        res.close();
+
+        return list;
+    }
+
+    public List<AppointmentDTO> getOfflineList() {
+
+
+        final String query =
+                "SELECT *" +
+                        " FROM " + TABLE_NAME +
+                        " WHERE offline = " + 0 +
+                        " ORDER BY dateAppointment DESC";
+
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final Cursor res = db.rawQuery(query, null);
+        res.moveToFirst();
+
+        final List<AppointmentDTO> list = new ArrayList<>();
+        AppointmentDTO dto;
+        TreatmentDAO treatmentDAO = new TreatmentDAO(context);
+        PatientDAO patientDAO = new PatientDAO(context);
+        while (!res.isAfterLast()) {
+
+            dto = new AppointmentDTO();
+            dto.setAppointmentID(res.getInt(res.getColumnIndex("appointmentId")));
+            dto.setDate(res.getLong(res.getColumnIndexOrThrow("dateAppointment")));
+            dto.setPresence(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("presence"))));
+            dto.setSavedOffline(TypeHelper.getBooleanFromInt(res.getInt(res.getColumnIndex("offline"))));
+            dto.setPatientDTO(patientDAO.getPatientById(res.getInt(res.getColumnIndexOrThrow("patientId"))));
+            TreatmentDTO treatmentDTO = treatmentDAO.getTreatmentByAppointmentID(dto.getAppointmentID());
+            if (treatmentDTO != null) {
+                dto.setTreatment(treatmentDTO);
+            }
             list.add(dto);
 
             res.moveToNext();

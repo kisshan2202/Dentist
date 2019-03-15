@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, AddAppointmentActivity.class));
         } else if (id == R.id.nav_send) {
             startActivity(new Intent(this, AddPatientActivity.class));
+        }else if (id == R.id.sync) {
+            openFrag(new SyncFragment());
         }
 
 

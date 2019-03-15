@@ -51,6 +51,7 @@ public class AddPatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateFields()) {
                     if (isEdit) {
+                        patientDTO.setSavedOffline(false);
                         updatePatient();
                     } else {
                         savePatient();
@@ -132,6 +133,7 @@ public class AddPatientActivity extends AppCompatActivity {
         patientDTO.setPhone(phone.getText().toString());
         patientDTO.setGender(gender.getSelectedItem().toString());
         patientDTO.setAge(Integer.valueOf(txtDOB.getText().toString()));
+        patientDTO.setSavedOffline(false);
 
         new DatabaseService(this).createPatient(patientDTO);
         finish();

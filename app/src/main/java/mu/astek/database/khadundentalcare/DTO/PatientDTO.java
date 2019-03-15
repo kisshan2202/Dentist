@@ -1,8 +1,11 @@
 package mu.astek.database.khadundentalcare.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+@IgnoreExtraProperties
 public class PatientDTO implements Serializable {
     Integer patientId;
     String firstname;
@@ -11,6 +14,7 @@ public class PatientDTO implements Serializable {
     String address;
     String phone;
     String gender;
+    Boolean savedOffline;
 
     public String getFirstname() {
         return firstname;
@@ -71,5 +75,13 @@ public class PatientDTO implements Serializable {
     @Override
     public String toString() {
         return firstname+ " "+lastname;
+    }
+
+    public Boolean getSavedOffline() {
+        return savedOffline;
+    }
+
+    public void setSavedOffline(Boolean savedOffline) {
+        this.savedOffline = savedOffline;
     }
 }
