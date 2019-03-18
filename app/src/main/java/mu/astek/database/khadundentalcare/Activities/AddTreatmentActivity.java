@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -161,7 +160,14 @@ public class AddTreatmentActivity extends AppCompatActivity {
 
         for(int i = 0;i< imageList.size();i++){
             String name = Calendar.getInstance().getTimeInMillis()+".jpg";
-            savePhotoProfile(name,getBytes(imageList.get(i)));
+            InputStream iStream = null;
+            try {
+                iStream = getContentResolver().openInputStream(imageList.get(i));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            byte[] inputData = getBytes(iStream);
+            savePhotoProfile(name,inputData);
             names.add(name);
         }
 
@@ -325,22 +331,30 @@ public class AddTreatmentActivity extends AppCompatActivity {
         }
     }
 
-    public byte[] getBytes(Uri data) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(new File(getImagePath(data)));
-            byte[] buf = new byte[1024];
-            int n;
-            while (-1 != (n = fis.read(buf)))
-                baos.write(buf, 0, n);
-        } catch (Exception e) {
-            Log.e(TAG, "getBytes Exception : " + e.toString());
-            e.printStackTrace();
+    /**
+     * https://stackoverflow.com/questions/10296734/image-uri-to-bytesarray
+     *
+     *
+     * @param inputStream
+     * @return
+     * @throws IOException
+     */
+    public byte[] getBytes(InputStream inputStream) {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        try{
+            int len = 0;
+            while ((len = inputStream.read(buffer)) != -1) {
+                byteBuffer.write(buffer, 0, len);
+            }
+        }catch (Exception e){
+
         }
 
-        byte[] bbytes = baos.toByteArray();
-        return bbytes;
+
+        return byteBuffer.toByteArray();
     }
 
 
