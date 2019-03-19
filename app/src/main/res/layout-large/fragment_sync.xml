@@ -20,7 +20,7 @@
         android:paddingRight="50dp"
         android:text="Start Sync"
         android:textColor="@android:color/white"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <ImageView

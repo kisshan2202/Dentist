@@ -47,4 +47,14 @@
         <item name="colorControlActivated">@color/bpWhite</item>
     </style>
 
+    <style name="RedAccent" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">#00796B</item>
+    </style>
+
+    <style name="WalkthroughTheme" parent="Theme.AppCompat">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>

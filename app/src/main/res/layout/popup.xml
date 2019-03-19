@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="false"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/border_red"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="25dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Downloading data from server will override existing app data\n\n Please enter your password if you wish to continue."
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <!--<TextView
+                android:id="@+id/txtDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".6"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="20sp" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_weight=".5"
+                android:background="#1A237E"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Cancel"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_weight=".5"
+                android:background="#1A237E"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Download"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
