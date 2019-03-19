@@ -1,7 +1,10 @@
 package mu.astek.database.khadundentalcare;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +68,40 @@ public class PatientRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             holder.txtAddress.setText(patientDTO.getAddress());
         }
 
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setTitle("Delete Patient");
+                alertDialog.setMessage("Deleting this patient will also delete all his/her appointments and treatments!\n\n Do you want to continue?");
+
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "DELETE",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                List<AppointmentDTO> patients = databaseService.getAppointmentListByPatientID(patientDTO.getPatientId());
+                                if(!list.isEmpty()){
+                                    for(AppointmentDTO appointmentDTO:patients){
+                                        databaseService.deleteAppointment(appointmentDTO);
+                                    }
+                                }
+                                databaseService.deletePatient(patientDTO);
+                                patientFragment.updateScreen();
+                                dialog.dismiss();
+                            }
+                        });
+
+                alertDialog.show();
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+            }
+        });
 
         holder.btnEditPatient.setOnClickListener(new View.OnClickListener() {
             @Override

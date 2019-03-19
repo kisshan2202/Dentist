@@ -2,8 +2,11 @@ package mu.astek.database.khadundentalcare.Activities;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -79,7 +82,28 @@ public class AddTreatmentActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(AddTreatmentActivity.this).create();
+                alertDialog.setTitle("Delete Treatment");
+                alertDialog.setMessage("Do you want to delete this Treatment?");
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "DELETE",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
 
+                                service.deleteTreatment(appointment.getTreatment());
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
+
+                alertDialog.show();
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {

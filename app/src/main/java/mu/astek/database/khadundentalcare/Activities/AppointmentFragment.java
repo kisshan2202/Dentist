@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,10 +17,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -29,7 +24,6 @@ import java.util.List;
 
 import mu.astek.database.khadundentalcare.AppointmentRecyclerAdapter;
 import mu.astek.database.khadundentalcare.DTO.AppointmentDTO;
-import mu.astek.database.khadundentalcare.DTO.PatientDTO;
 import mu.astek.database.khadundentalcare.Database.DatabaseService;
 import mu.astek.database.khadundentalcare.R;
 
@@ -48,7 +42,8 @@ public class AppointmentFragment extends Fragment implements CalendarDatePickerD
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_appointment, container, false);
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder(); StrictMode.setVmPolicy(builder.build());
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         //recyclerView.setNestedScrollingEnabled(false);
         this.context = getActivity();
@@ -68,7 +63,7 @@ public class AppointmentFragment extends Fragment implements CalendarDatePickerD
         List<AppointmentDTO> list = databaseService.getAppointmentsByDate(new Date());
         if (!list.isEmpty()) {
             fromCreateView = false;
-            adapter = new AppointmentRecyclerAdapter(context, list);
+            adapter = new AppointmentRecyclerAdapter(this, list);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setDrawingCacheEnabled(true);
@@ -100,21 +95,23 @@ public class AppointmentFragment extends Fragment implements CalendarDatePickerD
     public void onResume() {
         super.onResume();
 
+        updateAdapter();
+    }
 
+    public void updateAdapter() {
         List<AppointmentDTO> list = databaseService.getAppointmentsByDate(calendar.getTime());
         if (adapter != null) {
             adapter.setList(list);
             adapter.notifyDataSetChanged();
         } else {
             if (!list.isEmpty()) {
-                adapter = new AppointmentRecyclerAdapter(context, list);
+                adapter = new AppointmentRecyclerAdapter(this, list);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setDrawingCacheEnabled(true);
                 recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
             }
         }
-
 
     }
 
@@ -146,7 +143,7 @@ public class AppointmentFragment extends Fragment implements CalendarDatePickerD
             adapter.notifyDataSetChanged();
         } else {
             if (!list.isEmpty()) {
-                adapter = new AppointmentRecyclerAdapter(context, list);
+                adapter = new AppointmentRecyclerAdapter(this, list);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setDrawingCacheEnabled(true);

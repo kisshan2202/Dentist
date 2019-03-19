@@ -180,6 +180,12 @@ public class PatientFragment extends Fragment {
 
     }
 
+    public void updateScreen(){
+        List<PatientDTO> list = databaseService.getPatientList();
+        adapter.setList(list);
+        adapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

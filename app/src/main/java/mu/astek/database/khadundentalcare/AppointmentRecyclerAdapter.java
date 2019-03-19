@@ -1,8 +1,12 @@
 package mu.astek.database.khadundentalcare;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,9 +23,11 @@ import java.util.Date;
 import java.util.List;
 
 import mu.astek.database.khadundentalcare.Activities.AddTreatmentActivity;
+import mu.astek.database.khadundentalcare.Activities.AppointmentFragment;
 import mu.astek.database.khadundentalcare.DTO.AppointmentDTO;
 import mu.astek.database.khadundentalcare.DTO.PatientDTO;
 import mu.astek.database.khadundentalcare.DTO.TreatmentDTO;
+import mu.astek.database.khadundentalcare.Database.DatabaseService;
 import mu.astek.database.khadundentalcare.Utils.TypeHelper;
 
 import static mu.astek.database.khadundentalcare.Utils.TypeHelper.getUriList;
@@ -29,12 +35,16 @@ import static mu.astek.database.khadundentalcare.Utils.TypeHelper.getUriList;
 
 public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<AppointmentDTO> list;
+    AppointmentFragment appointmentFragment;
     Context context;
     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm");
+    DatabaseService service;
 
-    public AppointmentRecyclerAdapter(Context context, List<AppointmentDTO> taskList) {
-        this.context = context;
+    public AppointmentRecyclerAdapter(AppointmentFragment appointmentFragment, List<AppointmentDTO> taskList) {
+        this.appointmentFragment = appointmentFragment;
+        this.context = appointmentFragment.getContext();
         this.list = taskList;
+        this.service = new DatabaseService(context);
 
     }
 
@@ -88,11 +98,40 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
                 }
             }
 
+
         } else {
             holder.linearTreatment.setVisibility(View.GONE);
             holder.btnAddTreatment.setVisibility(View.VISIBLE);
 
         }
+
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setTitle("Delete Appointment");
+                alertDialog.setMessage("Do you want to delete this appointment?");
+
+
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "DELETE",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                service.deleteAppointment(appointmentDTO);
+                                appointmentFragment.updateAdapter();
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+            }
+        });
 
         holder.btnAddTreatment.setOnClickListener(new View.OnClickListener() {
             @Override

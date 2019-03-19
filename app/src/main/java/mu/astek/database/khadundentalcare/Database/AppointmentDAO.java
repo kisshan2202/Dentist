@@ -47,6 +47,9 @@ public final class AppointmentDAO {
     }
 
     public void deleteAppointment(AppointmentDTO appointmentDTO) {
+        if(appointmentDTO.getTreatment()!= null){
+            new TreatmentDAO(context).deleteTreatment(appointmentDTO.getTreatment());
+        }
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbHelper.open();
         db.delete(TABLE_NAME, "appointmentId =" + appointmentDTO.getAppointmentID(), null);
