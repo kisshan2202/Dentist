@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, AddPatientActivity.class));
         }else if (id == R.id.sync) {
             openFrag(new SyncFragment());
+        }else if (id == R.id.download) {
+            openFrag(new DownloadFragment());
         }
 
 

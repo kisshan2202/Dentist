@@ -85,4 +85,10 @@ public final class TreatmentDAO {
 
         return treatmentDTO;
     }
+
+    public void deleteData(){
+        String query = "delete  from treatment";
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(query);
+    }
 }

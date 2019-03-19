@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -148,6 +149,7 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
         Button btnAddTreatment, btnEditTreatment;
         LinearLayout linearTreatment, linearImages, linearPdf;
         RecyclerView recyclerviewPhoto, recyclerPdf;
+        ImageView imgDelete;
 
         public TaskViewHolder(View v) {
             super(v);
@@ -164,6 +166,7 @@ public class AppointmentRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             linearPdf = v.findViewById(R.id.linearPdf);
             recyclerviewPhoto = v.findViewById(R.id.recyclerviewPhoto);
             recyclerPdf = v.findViewById(R.id.recyclerPdf);
+            imgDelete = v.findViewById(R.id.imgDelete);
         }
     }
 

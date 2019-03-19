@@ -171,7 +171,6 @@
             android:layout_width="350dp"
             android:layout_height="75dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
             android:background="#1A237E"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -179,6 +178,20 @@
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="350dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="20dp"
+            android:background="#1A237E"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Delete"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
 
     </LinearLayout>

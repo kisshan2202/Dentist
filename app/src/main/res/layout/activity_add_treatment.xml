@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -169,13 +168,25 @@
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
             android:background="#1A237E"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Save"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#1A237E"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Delete"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
 
     </LinearLayout>

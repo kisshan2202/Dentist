@@ -100,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void createTablePatient(SQLiteDatabase db) {
         String qb = "CREATE TABLE IF NOT EXISTS patient (" +
-                " patientId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                " patientId INTEGER PRIMARY KEY NOT NULL, " +
                 " firstname TEXT NOT NULL, " +
                 " lastname TEXT NOT NULL, " +
                 " address TEXT NOT NULL, " +
@@ -115,7 +115,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void createTableAppointment(SQLiteDatabase db) {
         String qb = "CREATE TABLE IF NOT EXISTS appointment (" +
-                " appointmentId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                " appointmentId INTEGER PRIMARY KEY NOT NULL, " +
                 " patientId INTEGER NOT NULL, " +
                 " presence INTEGER DEFAULT 0, " +
                 " offline INTEGER DEFAULT 0, " +

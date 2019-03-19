@@ -18,7 +18,7 @@
         android:background="@color/app_primary"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:text="Start Sync"
+        android:text="Download Data from Server"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold" />

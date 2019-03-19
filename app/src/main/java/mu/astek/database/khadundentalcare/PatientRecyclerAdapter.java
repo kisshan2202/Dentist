@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,7 +114,7 @@ public class PatientRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public class PatientViewHolder extends PatientRecyclerAdapter.ViewHolder {
         TextView txtUsername, txtAddress, txtAge, txtPhone, txtFees;
         Button btnEditPatient, btnPatientHistory;
-
+        ImageView imgDelete;
 
         public PatientViewHolder(View v) {
             super(v);
@@ -121,7 +122,7 @@ public class PatientRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             txtAddress = v.findViewById(R.id.txtAddress);
             txtAge = v.findViewById(R.id.txtAge);
             txtPhone = v.findViewById(R.id.txtPhone);
-
+            imgDelete = v.findViewById(R.id.imgDelete);
             txtFees = v.findViewById(R.id.txtFees);
             btnEditPatient = v.findViewById(R.id.btnEditPatient);
             btnPatientHistory = v.findViewById(R.id.btnPatientHistory);

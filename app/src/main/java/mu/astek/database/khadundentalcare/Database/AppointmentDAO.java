@@ -26,10 +26,16 @@ public final class AppointmentDAO {
         this.context = context;
     }
 
-    public void createAppointment(AppointmentDTO patientDTO) {
+    public void createAppointment(AppointmentDTO appointmentDTO) {
+
+        if(appointmentDTO.getAppointmentID() == null){
+            Integer timestamp = (int) new Date().getTime();
+            appointmentDTO.setAppointmentID(timestamp);
+        }
+
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbHelper.open();
-        db.insert(TABLE_NAME, null, getContentValues(patientDTO));
+        db.insert(TABLE_NAME, null, getContentValues(appointmentDTO));
         dbHelper.close();
     }
 
@@ -230,5 +236,11 @@ public final class AppointmentDAO {
         res.close();
 
         return list;
+    }
+
+    public void deleteData(){
+        String query = "delete  from appointment";
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(query);
     }
 }

@@ -41,7 +41,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
 
     AppointmentDTO appointment;
     EditText txtDetails, txtFees;
-    Button btnSave;
+    Button btnSave,btnDelete;
     Boolean isEdit = false;
     DatabaseService service;
     LinearLayout linearImage, linearPdf;
@@ -61,6 +61,7 @@ public class AddTreatmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_treatment);
         service = new DatabaseService(this);
         btnSave = findViewById(R.id.btnSave);
+        btnDelete = findViewById(R.id.btnDelete);
         txtDetails = findViewById(R.id.txtDetails);
         txtFees = findViewById(R.id.txtFees);
         linearImage = findViewById(R.id.linearImage);
@@ -73,7 +74,14 @@ public class AddTreatmentActivity extends AppCompatActivity {
         if (isEdit) {
             linearImage.setVisibility(View.GONE);
             linearPdf.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.VISIBLE);
         }
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

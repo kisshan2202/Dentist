@@ -87,4 +87,10 @@ public class DatabaseService {
    public void getTreatmentByAppointmentID(Integer id){
         treatmentDAO.getTreatmentByAppointmentID(id);
     }
+
+    public void deleteAllData(){
+        treatmentDAO.deleteData();
+        appointmentDAO.deleteData();
+        patientDAO.deleteData();
+    }
 }

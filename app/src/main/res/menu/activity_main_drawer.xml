@@ -35,6 +35,11 @@
                 android:icon="@drawable/sync"
                 android:title="Sync Data" />
 
+            <item
+                android:id="@+id/download"
+                android:icon="@drawable/download"
+                android:title="Download Data" />
+
         </menu>
     </item>
 

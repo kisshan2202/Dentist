@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import mu.astek.database.khadundentalcare.DTO.PatientDTO;
@@ -22,6 +23,10 @@ public final class PatientDAO {
     }
 
     public void createPatient(PatientDTO patientDTO) {
+        if(patientDTO.getPatientId() == null){
+            Integer timestamp = (int) new Date().getTime();
+            patientDTO.setPatientId(timestamp);
+        }
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbHelper.open();
         db.insert(TABLE_NAME, null, getContentValues(patientDTO));
@@ -41,6 +46,7 @@ public final class PatientDAO {
         db.delete(TABLE_NAME, "patientId =" + patientDTO.getPatientId(), null);
         dbHelper.close();
     }
+
 
     public ContentValues getContentValues(PatientDTO dto) {
         final ContentValues values = new ContentValues();
@@ -158,5 +164,11 @@ public final class PatientDAO {
         res.close();
 
         return patientDTO;
+    }
+
+     public void deleteData(){
+        String query = "delete  from patient";
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(query);
     }
 }
