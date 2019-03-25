@@ -4,11 +4,8 @@ package mu.astek.database.khadundentalcare;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -18,21 +15,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.List;
 
 import mu.astek.database.khadundentalcare.DTO.AppointmentDTO;
 import mu.astek.database.khadundentalcare.DTO.PatientDTO;
@@ -133,7 +123,7 @@ public class DownloadFragment extends Fragment {
         }
     }
 
-    private void handleProgressbard() {
+    private void handleProgressBar() {
         if(hascompletedAppointment && hascompletedPatient){
             progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(context,"Data has been downloaded from server",Toast.LENGTH_LONG).show();
@@ -169,42 +159,46 @@ public class DownloadFragment extends Fragment {
 
                 if(totalPatient == x){
                     hascompletedPatient = true;
-                    handleProgressbard();
+                    handleProgressBar();
+
+                    reference2  = FirebaseDatabase.getInstance().getReference("Appointments");
+                    valueEventListener2 = reference2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            int x = (int)snapshot.getChildrenCount();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                AppointmentDTO appointmentDTO = dataSnapshot.getValue(AppointmentDTO.class);
+                                databaseService.createAppointment(appointmentDTO);
+
+                                if(appointmentDTO.getTreatment()!= null){
+                                    databaseService.createTreatment(appointmentDTO.getTreatment());
+                                }
+                                appointments++;
+                            }
+
+
+                            if(appointments == x){
+                                hascompletedAppointment = true;
+                                handleProgressBar();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(context,"An error has occured, please try again!",Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(context,"An error has occured, please try again!",Toast.LENGTH_LONG).show();
             }
         });
 
-        reference2  = FirebaseDatabase.getInstance().getReference("Appointments");
-        valueEventListener2 = reference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                int x = (int)snapshot.getChildrenCount();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    AppointmentDTO appointmentDTO = dataSnapshot.getValue(AppointmentDTO.class);
-                    databaseService.createAppointment(appointmentDTO);
 
-                    if(appointmentDTO.getTreatment()!= null){
-                        databaseService.createTreatment(appointmentDTO.getTreatment());
-                    }
-                    appointments++;
-                }
-
-
-                if(appointments == x){
-                    hascompletedAppointment = true;
-                    handleProgressbard();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        });
     }
 }
